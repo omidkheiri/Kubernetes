@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: basicdatawebapi-deple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: basicdatawebapi
+  template:
+    metadata:
+      labels:
+        app: basicdatawebapi
+    spec:
+      containers:
+      - name: basicdatawebapi
+        image: omidkheiri1/nikan.services.basicdata:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: basicdata-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: basicdatawebapi
+  ports:
+  - name: basicdatawebapi
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: basicdatawebgrpc
+    protocol: TCP
+    port: 666
+    targetPort: 666     
