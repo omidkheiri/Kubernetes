@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identityadminapi-deple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identityadminapi
+  template:
+    metadata:
+      labels:
+        app: identityadminapi
+    spec:
+      containers:
+      - name: identityadminapi
+        image: omidkheiri1/nikan.services.identity.admin.api:latest
+        resources:
+          limits:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identityadminapi-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: identityadminapi
+  ports:
+  - name: identityadminapi
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  
+  

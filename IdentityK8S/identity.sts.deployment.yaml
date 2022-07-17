@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  identitysts-deple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identitysts
+  template:
+    metadata:
+      labels:
+        app: identitysts
+    spec:
+      containers:
+      - name: identitysts
+        image: omidkheiri1/nikan.services.identity.sts.identity:latest
+        # env:
+        # - name:  ConnectionString_ConfigurationDbConnection
+        #   value: "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+        # - name:  ConnectionString_PersistedGrantDbConnection
+        #   value: "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+        # - name:  ConnectionString_IdentityDbConnection
+        #   value: "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+        # - name:  ConnectionString_AdminLogDbConnection
+        #   value: "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+        # - name:  ConnectionString_AdminAuditLogDbConnection
+        #   value: "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+        # - name:  ConnectionString_DataProtectionDbConnection
+        #   value: "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+        resources:
+          limits:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: identitysts-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: identitysts
+  ports:
+  - name: identitysts
+    protocol: TCP
+    port: 80
+    targetPort: 80
+    
+ 
+  
+
+  
+  
