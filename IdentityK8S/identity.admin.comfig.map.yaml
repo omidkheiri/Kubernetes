@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: identityadminconfigmap
+data:
+  appsettings.json: |-
+    {
+      "ConnectionStrings": {
+        "ConfigurationDbConnection": "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;",
+        "PersistedGrantDbConnection": "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;",
+        "IdentityDbConnection": "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;",
+        "AdminLogDbConnection": "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;",
+        "AdminAuditLogDbConnection": "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;",
+        "DataProtectionDbConnection": "Server=postgres;Database=nikan_services_identityService;User Id=postgres;Password=admin123;"
+      },
+      "AdminApiConfiguration": {
+        "ApiName": "Nikan IdentityServer4 Admin Api",
+        "ApiVersion": "v1",
+        "ApiBaseUrl": "https://localhost:44302",
+        "IdentityServerBaseUrl": "https://localhost:44310",
+        "OidcSwaggerUIClientId": "nikan_identity_admin_api_swaggerui",
+        "OidcApiName": "nikan_identity_admin_api",
+        "AdministrationRole": "IdentityAdminAdministrator",
+        "RequireHttpsMetadata": false,
+        "CorsAllowAnyOrigin": true,
+        "CorsAllowOrigins": []
+    },
+    "SmtpConfiguration": {
+    "Host": "",
+    "Login": "",
+    "Password": ""
+    },
+    "SendGridConfiguration": {
+    "ApiKey": "",
+    "SourceEmail": "",
+    "SourceName": ""
+    },
+    "DatabaseProviderConfiguration": {
+    "ProviderType": "PostgreSQL"
+    },
+    "AuditLoggingConfiguration": {
+    "Source": "IdentityServer.Admin.Api",
+    "SubjectIdentifierClaim": "sub",
+    "SubjectNameClaim": "name",
+    "ClientIdClaim": "client_id"
+    },
+    "IdentityOptions": {
+    "Password": {
+      "RequiredLength": 8
+    },
+    "User": {
+      "RequireUniqueEmail": true
+    },
+    "SignIn": {
+      "RequireConfirmedAccount": false
+    }
+    },
+    "DataProtectionConfiguration": {
+    "ProtectKeysWithAzureKeyVault": false
+    },
+    "AzureKeyVaultConfiguration": {
+    "AzureKeyVaultEndpoint": "",
+    "ClientId": "",
+    "ClientSecret": "",
+    "TenantId": "",
+    "UseClientCredentials": true,
+    "DataProtectionKeyIdentifier": "",
+    "ReadConfigurationFromKeyVault": false
+    }
+    }
+
+
+  

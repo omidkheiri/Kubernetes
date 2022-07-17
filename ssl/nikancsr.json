@@ -1,0 +1,18 @@
+
+{
+    "CN": "*.nikan.com",
+    "hosts": ["sts.nikan.com"],
+    "key": {
+      "algo": "rsa",
+      "size": 2048
+    },
+    "names": [
+      {
+        "C": "US",
+        "L": "San Jose",
+        "O": "Nikan Services",
+        "OU": "snadbox",
+        "ST": "CA"
+      }
+    ]
+  }

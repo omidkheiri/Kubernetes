@@ -1,0 +1,21 @@
+{
+    "hosts": [
+        "sts.nikan.com",
+        "https://sts.nikan.com",
+        "omidkheiri@nikan.com",
+        "127.0.0.1"
+    ],
+    "key": {
+        "algo": "rsa",
+        "size": 2048
+    },
+    "names": [
+        {
+            "C":  "US",
+            "L":  "San Francisco",
+            "O":  "Nikan Services",
+            "OU": "WWW",
+            "ST": "California"
+        }
+    ]
+}

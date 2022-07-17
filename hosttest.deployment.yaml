@@ -1,0 +1,36 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hosttest-deple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hosttest
+  template:
+    metadata:
+      labels:
+        app: hosttest
+    spec:
+      containers:
+      - name: identitysts
+        image: omidkheiri1/hosttest:latest
+        resources:
+          limits:
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hosttest-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: hosttest
+  ports:
+  - name: hosttest
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  
+  
