@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crmprofilewebapi-deple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crmprofilewebapi
+  template:
+    metadata:
+      labels:
+        app: crmprofilewebapi
+    spec:
+      containers:
+      - name: crmprofilewebapi
+        image: omidkheiri1/nikan.services.crm.profile:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: crmprofile-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: crmprofilewebapi
+  ports:
+  - name: crmprofilewebapi
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: crmprofilewebgrpc
+    protocol: TCP
+    port: 666
+    targetPort: 666     

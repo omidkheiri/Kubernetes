@@ -17,6 +17,11 @@ spec:
         image: postgres
         ports:
           - containerPort: 5432
+        resources:
+          requests:
+             memory: "500Mi"
+          limits:
+             memory: "500Mi"
         envFrom:
           - configMapRef:
               name: postgres-config
