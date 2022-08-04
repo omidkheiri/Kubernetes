@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gwwebapi-deple
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gwwebapi
+  template:
+    metadata:
+      labels:
+        app: gwwebapi
+    spec:
+      containers:
+      - name: gwwebapi
+        image: omidkheiri1/nikan.services.apigw:latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gw-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: gwwebapi
+  ports:
+  - name: gwwebapi
+    protocol: TCP
+    port: 80
+    targetPort: 80
+  - name: gwwebgrpc
+    protocol: TCP
+    port: 666
+    targetPort: 666     
